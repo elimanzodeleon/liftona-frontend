@@ -19,3 +19,5 @@ Anyone can login or sign up as long as the input passes all validation checks. N
 ## TODO
 
 - users can add a profile picture/avatar.
+- private routes.
+- prevent authenticated users from accessing landing page.
