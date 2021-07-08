@@ -1,7 +1,7 @@
 # Liftona - Front End
 
 Users now have a place to go to when they want to find a new workout or share one of their favorite workouts.
-Check out the live [demo](https://github.com/facebook/create-react-app).
+Check out the live [demo](https://liftona.netlify.app/).
 Dummy data is currently being used while I complete the backend.
 Anyone can login or sign up as long as the input passes all validation checks. No data is currently stored.
 
