@@ -1,10 +1,10 @@
-import React from 'react';
+import { nanoid } from 'nanoid';
 import { useLocation } from 'react-router-dom';
 import queryString from 'query-string';
 import WorkoutList from '../../components/WorkoutList';
 import UserList from '../../components/UserList';
 import * as s from './styles';
-import { workouts, users } from '../../testData';
+import { dummyWorkouts, users } from '../../testData';
 
 const Search = () => {
   const { search } = useLocation();
@@ -12,7 +12,7 @@ const Search = () => {
   // here we will useLayoutEffect to grab data from api using query parameter
   // if query parameter is empty we will return oldest users and newest workouts
   return (
-    <s.SearchWrapper>
+    <s.SearchWrapper key={nanoid()}>
       <s.SearchHeaderWrapper>
         <s.SearchHeader>
           <s.SearchTitle>Search results for</s.SearchTitle>
@@ -27,7 +27,7 @@ const Search = () => {
         </s.DataWrapper>
         <s.DataWrapper>
           <s.ResultTitle>Workouts</s.ResultTitle>
-          <WorkoutList workouts={workouts} />
+          <WorkoutList workouts={dummyWorkouts} />
         </s.DataWrapper>
       </s.ResultsWrapper>
     </s.SearchWrapper>

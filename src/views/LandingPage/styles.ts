@@ -12,13 +12,16 @@ export const BodyWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 500px;
+  width: 100%;
+  max-width: 500px;
   margin: auto;
   margin-top: 3em;
 
   @media screen and (min-width: 900px) {
     margin: auto;
+    padding: 0;
     padding-bottom: 5em;
+    max-width: none;
     width: auto;
     flex-direction: row;
   }
@@ -28,10 +31,11 @@ export const Header = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 2em;
-
+  margin-bottom: 3em;
+  padding: 0 1em;
   @media screen and (min-width: 900px) {
     margin: 3em 5em 0 0;
+    padding: 0;
     align-items: flex-start;
   }
 
@@ -41,7 +45,8 @@ export const Header = styled.div`
 `;
 
 export const Title = styled.p`
-  font-size: 3em;
+  font-size: 2.5em;
+  font-weight: 500;
   color: #bb86fc;
 
   @media screen and (min-width: 900px) {
@@ -54,7 +59,7 @@ export const Title = styled.p`
 `;
 
 export const Subtitle = styled.div`
-  font-size: 2em;
+  font-size: 1.5em;
 
   @media screen and (min-width: 900px) {
     font-size: 1.5em;
@@ -69,32 +74,15 @@ export const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #242526;
-  border-radius: 7px;
   padding: 1.5em;
   box-shadow: 0 10px 12px 0 rgba(0, 0, 0, 0.1);
 
+  @media screen and (min-width: 500px) {
+    border-radius: 7px;
+    /* width: 400px; */
+  }
   @media screen and (min-width: 900px) {
     width: 400px;
-  }
-`;
-
-export const Form = styled.form`
-  display: grid;
-  flex-direction: column;
-  gap: 1em;
-`;
-
-export const Input = styled.input`
-  color: #e4e6eb;
-  background-color: #3a3b3c;
-  padding: 0.5em 0.75em;
-  border: none;
-  border-radius: 7px;
-  font-size: 1.2em;
-  &:focus {
-    outline: none;
-    border: 1px solid #bb86fc;
-    border-radius: 5px;
   }
 `;
 
@@ -104,14 +92,6 @@ const Button = styled.button`
   border-radius: 7px;
   padding: 0.5em;
   font-weight: bold;
-`;
-
-export const LoginButton = styled(Button)`
-  cursor: ${props => (props.disabled ? 'default' : 'pointer')};
-  color: #bb86fc;
-  background-color: transparent;
-  border: 1px solid #bb86fc;
-  margin-bottom: 1em;
 `;
 
 export const SignUpButton = styled(Button)`
@@ -134,6 +114,7 @@ export const Footer = styled.footer`
 export const Error = styled.p`
   color: #b00020;
   margin-bottom: 1em;
+  font-weight: 500;
 `;
 
 export const ForgotPasswordLink = styled.a`

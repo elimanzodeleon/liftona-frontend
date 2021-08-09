@@ -18,13 +18,13 @@ export const NavWrapper = styled.header`
 export const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
   padding: 0 1em;
-  max-width: 900px;
 
-  /* @media screen and (min-width: 900px) {
-    padding: 0 3em;
-  } */
+  @media screen and (min-width: 500px) {
+    max-width: 900px;
+  }
 `;
 
 export const Title = styled(Link)`

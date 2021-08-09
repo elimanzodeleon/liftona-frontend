@@ -1,13 +1,45 @@
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import * as s from './styles';
-import { workouts } from '../../testData';
+import { useAuth } from '../../hooks/useAuth';
+import { dummyWorkouts } from '../../testData';
 import WorkoutList from '../../components/WorkoutList';
 
 const Home = () => {
-  // on initial page load we fetch the post of the users curr user is following.
-  // pass it to workoutlist component and render workouts.
-  // NOTE: loading state var should default to true
+  // TODO on initial home page load, we display liftona logo
+  // in the center of the screen while loading (NO NAVBAR)
+  // TODO move navbar to only wrap components in App.tsx that should be viewable
+
+  const [workouts, setWorkouts] = useState<any>([]);
+  const [loading, setLoading] = useState(true);
+  const { currentUser } = useAuth();
   const history = useHistory();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const url = `${process.env.REACT_APP_SERVER_BASE_URL}/home-feed`;
+        const { data } = await axios.get(url, {
+          withCredentials: true,
+          headers: { Authorization: `Bearer ${currentUser}` },
+        });
+        console.log(data);
+        setWorkouts(data.workouts);
+        setLoading(false);
+      } catch (error) {
+        console.log(error.response);
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  if (loading) {
+    // todo insted of returning null, return  some loading indicator
+    return null;
+  }
 
   return (
     <s.wrapper>

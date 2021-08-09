@@ -19,9 +19,9 @@ export interface IResetPasswordForm {
   password: string;
 }
 
-export interface INewWorkoutForm {
+export interface IWorkout {
   title: string;
-  description?: string;
+  details?: string;
   exercises: IExercise[];
 }
 

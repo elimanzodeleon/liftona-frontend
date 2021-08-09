@@ -43,20 +43,6 @@ export const ModalForm = styled.form`
   gap: 1em;
 `;
 
-export const ModalFormInput = styled.input`
-  color: #e4e6eb;
-  background-color: #3a3b3c;
-  padding: 0.5em 0.75em;
-  border: none;
-  border-radius: 7px;
-  font-size: 1.2em;
-  &:focus {
-    outline: none;
-    border: 1px solid #bb86fc;
-    border-radius: 5px;
-  }
-`;
-
 export const SignUpButton = styled.button`
   cursor: ${props => (props.disabled ? 'default' : 'pointer')};
   font-size: 1.2em;
@@ -66,8 +52,16 @@ export const SignUpButton = styled.button`
   margin: 0.5em 0;
   color: #e4e6eb;
   background-color: #bb86fc;
+  opacity: ${props => (props.disabled ? 0.5 : 1)};
 `;
 
 export const Error = styled.p`
   color: #b00020;
+  font-weight: 500;
+`;
+
+export const Tip = styled.p`
+  color: #3a3b3c;
+  font-weight: 500;
+  font-size: 1em;
 `;

@@ -5,12 +5,15 @@ export const SearchInput = styled.input`
   background-color: #3a3b3c;
   padding: 0.5em 0.75em;
   border: none;
-  border-radius: 50px;
+  border-radius: 7px;
   font-size: 1em;
-  width: 250px;
+  width: 150px;
   margin-right: 1em;
   &:focus {
     outline: none;
-    border-radius: 50px;
+  }
+
+  @media screen and (min-width: 500px) {
+    width: 250px;
   }
 `;

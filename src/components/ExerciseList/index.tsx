@@ -19,7 +19,10 @@ const ExerciseList = ({ exercises }: { exercises: any }) => {
               </s.SetsWrapper>
               <s.RepsWrapper>
                 <s.WorkoutInfoLabel>reps </s.WorkoutInfoLabel>
-                <p>{reps}</p> {unilateral && <s.Unilateral>each</s.Unilateral>}
+                <p>{reps}</p>{' '}
+                <s.Unilateral>
+                  {unilateral ? 'each' : <>&nbsp;&nbsp;</>}
+                </s.Unilateral>
               </s.RepsWrapper>
             </s.DetailsWrapper>
           </s.ExerciseWrapper>

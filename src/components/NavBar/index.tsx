@@ -5,7 +5,7 @@ import SearchInput from '../../components/SearchInput';
 import * as s from './styles';
 
 const NavBar = () => {
-  const { currentUser } = useAuth();
+  const { currentUser, getUsername } = useAuth();
   const history = useHistory();
 
   if (!currentUser) {
@@ -18,7 +18,7 @@ const NavBar = () => {
         <s.Title to='/home'>liftona</s.Title>
         <s.LinkWrapper>
           <SearchInput />
-          <s.ProfileButton onClick={() => history.push(`/noah`)} />
+          <s.ProfileButton onClick={() => history.push(`/${getUsername()}`)} />
         </s.LinkWrapper>
       </s.Nav>
     </s.NavWrapper>

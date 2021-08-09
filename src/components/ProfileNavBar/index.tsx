@@ -1,41 +1,45 @@
 import React from 'react';
-import { useHistory, useRouteMatch } from 'react-router-dom';
+import { useHistory, useRouteMatch, useLocation } from 'react-router-dom';
 import * as s from './styles';
 import LogoutButton from '../../components/LogoutButton';
+import { useAuth } from '../../hooks/useAuth';
 
 const ProfileNavBar = ({
   mainNav,
   setMainNav,
   user,
+  isFollowing,
 }: {
   mainNav: boolean;
   setMainNav: any;
   user: any;
+  isFollowing: Boolean | undefined;
 }) => {
-  const { url } = useRouteMatch();
   if (!mainNav) {
     // need to pass user which includes follows/followers/likes and username
     // return <SecondaryNav />;
-    return <SecondaryNav url={url} user={user} setMainNav={setMainNav} />;
+    return <SecondaryNav user={user} setMainNav={setMainNav} />;
   }
-  return <PrimaryNav url={url} user={user} setMainNav={setMainNav} />;
+  return (
+    <PrimaryNav user={user} setMainNav={setMainNav} isFollowing={isFollowing} />
+  );
 };
-console.log('user navbar rendered');
 
 const PrimaryNav = ({
   setMainNav,
   user,
-  url,
+  isFollowing,
 }: {
-  setMainNav: any;
+  setMainNav: (prev: boolean) => void;
   user: any;
-  url: any;
+  isFollowing: Boolean | undefined;
 }) => {
+  const { getUsername } = useAuth();
   return (
     <s.NavWrapper>
       <s.NavLinks>
         <s.Link
-          to={`${url}`}
+          to={`/${user}`}
           activeStyle={{ color: '#bb86fc', borderBottom: '1px solid #bb86fc' }}
           isActive={(match, location) =>
             location.pathname.split('/').pop() === user
@@ -45,7 +49,7 @@ const PrimaryNav = ({
           Posts
         </s.Link>
         <s.Link
-          to={`${url}/likes`}
+          to={`/${user}/likes`}
           activeStyle={{ color: '#bb86fc', borderBottom: '1px solid #bb86fc' }}
           isActive={(match, location) =>
             location.pathname.split('/').pop() === 'likes'
@@ -55,23 +59,18 @@ const PrimaryNav = ({
           Likes
         </s.Link>
       </s.NavLinks>
-      {/* {currentUser.username === user ? <LogoutButton />} : user in currentuser.following ? unfollowbutton : followbutton} */}
-      <LogoutButton />
-      {/* <s.FollowButton>Follow</s.FollowButton> */}
-      {/* <s.UnfollowButton></s.UnfollowButton> */}
+      {getUsername() === user ? (
+        <LogoutButton />
+      ) : isFollowing ? (
+        <s.UnfollowButton />
+      ) : (
+        <s.FollowButton>Follow</s.FollowButton>
+      )}
     </s.NavWrapper>
   );
 };
 
-const SecondaryNav = ({
-  setMainNav,
-  user,
-  url,
-}: {
-  setMainNav: any;
-  user: any;
-  url: any;
-}) => {
+const SecondaryNav = ({ setMainNav, user }: { setMainNav: any; user: any }) => {
   const history = useHistory();
   const handleGoBack = () => {
     setMainNav(true);
@@ -82,7 +81,7 @@ const SecondaryNav = ({
     <s.NavWrapper>
       <s.NavLinks>
         <s.Link
-          to={`${url}/following`}
+          to={`/${user}/following`}
           activeStyle={{ color: '#bb86fc', borderBottom: '1px solid #bb86fc' }}
           isActive={(match, location) =>
             location.pathname.split('/').pop() === 'following'
@@ -92,7 +91,7 @@ const SecondaryNav = ({
           Following
         </s.Link>
         <s.Link
-          to={`${url}/followers`}
+          to={`/${user}/followers`}
           activeStyle={{ color: '#bb86fc', borderBottom: '1px solid #bb86fc' }}
           isActive={(match, location) =>
             location.pathname.split('/').pop() === 'followers'

@@ -35,6 +35,7 @@ export const HeaderInfo = styled.div`
   margin-left: 1em;
   justify-content: space-evenly;
 `;
+
 export const HeaderUsername = styled(Link)`
   cursor: pointer;
   text-decoration: none;
@@ -47,6 +48,11 @@ export const HeaderUsername = styled(Link)`
 
 export const HeaderDate = styled.p`
   color: #3a3b3c;
+`;
+
+export const Details = styled.p`
+  font-weight: 500;
+  margin-top: 0.25em;
 `;
 
 export const Hr = styled.hr`

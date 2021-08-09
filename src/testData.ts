@@ -1,4 +1,4 @@
-export const workouts = [
+export const dummyWorkouts = [
   {
     id: 1,
     user: 'asdf',

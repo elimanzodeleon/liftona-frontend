@@ -31,10 +31,16 @@ const NewWorkoutExerciseList = ({ exercises, setExercises }: IProps) => {
               <s.RepsWrapper>
                 <s.ExerciseLabel>reps </s.ExerciseLabel>
                 <p>{reps}</p>
-                {unilateral && <s.Unilateral>each</s.Unilateral>}
+                <s.Unilateral>
+                  {unilateral ? (
+                    'each'
+                  ) : (
+                    <>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</>
+                  )}
+                </s.Unilateral>
               </s.RepsWrapper>
+              <s.RemoveExerciseButton onClick={() => removeExercise(id)} />
             </s.DetailsWrapper>
-            <s.RemoveExerciseButton onClick={() => removeExercise(id)} />
           </s.ExerciseWrapper>
         );
       })}
